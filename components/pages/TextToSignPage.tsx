@@ -1,5 +1,6 @@
+
 import React from 'react';
-import TextToSign from '../components/TextToSign';
+import TextToSign from '../TextToSign';
 
 const TextToSignPage: React.FC = () => {
   return (

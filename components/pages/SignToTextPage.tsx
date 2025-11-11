@@ -1,5 +1,6 @@
+
 import React from 'react';
-import Translator from '../components/Translator';
+import Translator from '../Translator';
 
 const SignToTextPage: React.FC = () => {
   return (

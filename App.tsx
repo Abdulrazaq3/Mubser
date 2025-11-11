@@ -5,10 +5,10 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import SplashScreen from './components/SplashScreen';
-import HomePage from './pages/HomePage';
-import SignToTextPage from './pages/SignToTextPage';
-import TextToSignPage from './pages/TextToSignPage';
-import FAQPage from './pages/FAQPage';
+import HomePage from './components/pages/HomePage';
+import SignToTextPage from './components/pages/SignToTextPage';
+import TextToSignPage from './components/pages/TextToSignPage';
+import FAQPage from './components/pages/FAQPage';
 import { useLanguage } from './contexts/LanguageContext';
 
 const App: React.FC = () => {

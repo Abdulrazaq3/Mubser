@@ -1,9 +1,10 @@
+
 import React from 'react';
-import Hero from '../components/Hero';
-import WhyMubsir from '../components/WhyMubsir';
-import HowToUse from '../components/HowToUse';
-import Team from '../components/Team';
-import CallToAction from '../components/CallToAction';
+import Hero from '../Hero';
+import WhyMubsir from '../WhyMubsir';
+import HowToUse from '../HowToUse';
+import Team from '../Team';
+import CallToAction from '../CallToAction';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;

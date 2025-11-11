@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GoogleGenAI } from "@google/genai";
 import { VolumeUpIcon, CopyIcon } from './icons';
 import { useTranslations } from '../hooks/useTranslations';
-import {
-  ANALYZE_ENDPOINT,
-  DEFAULT_INTERVAL_MS,
-  SEND_FIELD_NAME,
-} from '../Config';
+import { useLanguage } from '../contexts/LanguageContext';
 
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+const DEFAULT_INTERVAL_MS = 2000;
 
 enum Status {
   Idle,
@@ -36,6 +36,7 @@ const StatusIndicator: React.FC<{ status: Status; t: (k: string)=>string }> = ({
 
 const Translator: React.FC = () => {
   const { t, isLoaded } = useTranslations();
+  const { language } = useLanguage();
 
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [status, setStatus] = useState<Status>(Status.Idle);
@@ -50,11 +51,9 @@ const Translator: React.FC = () => {
   const animationFrameRef = useRef<number | null>(null);
   const lastProcessTimeRef = useRef<number>(0);
   const inFlightRef = useRef<boolean>(false);
-  const abortRef = useRef<AbortController | null>(null);
 
   const processInterval = DEFAULT_INTERVAL_MS;
 
-  // helper: canvas.toBlob -> Promise
   const canvasToBlob = (canvas: HTMLCanvasElement, type = 'image/jpeg', quality = 0.9) =>
     new Promise<Blob>((resolve, reject) => {
       try {
@@ -66,13 +65,25 @@ const Translator: React.FC = () => {
         reject(e);
       }
     });
+  
+  const blobToBase64 = (blob: Blob) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result !== 'string') {
+          return reject(new Error('Failed to read blob as string'));
+        }
+        // remove data:mime/type;base64,
+        resolve(reader.result.split(',')[1]);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
 
-  // إرسال فريم للباك-إند
   const processFrame = useCallback(async () => {
     if (inFlightRef.current || !videoRef.current) return;
     const video = videoRef.current;
 
-    // لازم الفيديو يكون جاهز بأبعاد فعلية
     if (!video.videoWidth || !video.videoHeight) return;
 
     inFlightRef.current = true;
@@ -90,7 +101,6 @@ const Translator: React.FC = () => {
       const ctx = canvas.getContext('2d');
       if (!ctx) throw new Error('Could not get 2D context');
 
-      // الفيديو عندك معكوس بـ CSS (-scale-x-100) => نعكس الرسم على الكانفس
       ctx.save();
       ctx.translate(w, 0);
       ctx.scale(-1, 1);
@@ -98,63 +108,46 @@ const Translator: React.FC = () => {
       ctx.restore();
 
       const blob = await canvasToBlob(canvas, 'image/jpeg', 0.9);
-      const formData = new FormData();
-      formData.append(SEND_FIELD_NAME, new File([blob], 'frame.jpg', { type: 'image/jpeg' }));
+      const base64Data = await blobToBase64(blob);
+      
+      const imagePart = {
+        inlineData: {
+          mimeType: 'image/jpeg',
+          data: base64Data,
+        },
+      };
 
-      // الغِ أي طلب سابق قيد التنفيذ
-      if (abortRef.current) abortRef.current.abort();
-      abortRef.current = new AbortController();
+      const prompt = language === 'ar' 
+        ? "أنت خبير في لغة الإشارة العربية (ArSL). ما هو الحرف الذي يتم الإشارة به في هذه الصورة؟ أجب بالحرف الواحد فقط. إذا لم تكتشف أي إشارة، أجب بنص فارغ."
+        : "You are an expert American Sign Language (ASL) translator. What letter is being signed in this image? Respond with only the single letter. If no sign is detected, respond with an empty string.";
 
-      const res = await fetch(ANALYZE_ENDPOINT, {
-        method: 'POST',
-        body: formData,
-        credentials: 'omit',  // بدون كوكيز
-        cache: 'no-store',
-        signal: abortRef.current.signal,
-        mode: 'cors',
-        // لا تضف Content-Type يدوياً مع FormData (المتصفح يضبط boundary)
+      const textPart = { text: prompt };
+
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: { parts: [imagePart, textPart] },
       });
 
-      if (!res.ok) {
-        const msg = await res.text().catch(() => res.statusText);
-        throw new Error(msg || `HTTP ${res.status}`);
-      }
+      const resultText = response.text.trim();
 
-      // يدعم استجابتين:
-      // {label: string, confidence: number} أو {text: "label (0.95)"}
-      const data: { label?: string; confidence?: number; text?: string } = await res.json();
-
-      if (typeof data.label === 'string' && typeof data.confidence === 'number') {
-        setDetectedText(data.label);
-        setConfidence(data.confidence);
-      } else if (typeof data.text === 'string') {
-        const rawText = data.text;
-        const match = rawText.match(/(.+?)\s*\(([\d.]+)\)/);
-        if (match) {
-          setDetectedText(match[1].trim());
-          setConfidence(parseFloat(match[2]));
-        } else {
-          setDetectedText(rawText);
-          setConfidence(rawText ? 0.9 : 0);
-        }
+      if (resultText && resultText.length > 0) {
+        setDetectedText(resultText.substring(0, 1).toUpperCase());
+        setConfidence(0.95);
       } else {
         setDetectedText('');
         setConfidence(0);
       }
-
+      
       setStatus(Status.Watching);
     } catch (e: any) {
-      if (e?.name !== 'AbortError') {
-        console.error('Translation API Error:', e);
-        setError(e?.message || t('translator.apiError'));
-        setStatus(Status.Error);
-      }
+      console.error('Gemini API Error:', e);
+      setError(e?.message || t('translator.apiError'));
+      setStatus(Status.Error);
     } finally {
       inFlightRef.current = false;
     }
-  }, [t]);
+  }, [t, language]);
 
-  // حلقة الجدولة بالـ rAF
   const loop = useCallback(
     (ts: number) => {
       if (lastProcessTimeRef.current === 0) lastProcessTimeRef.current = ts;
@@ -179,10 +172,6 @@ const Translator: React.FC = () => {
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = null;
-    }
-    if (abortRef.current) {
-      abortRef.current.abort();
-      abortRef.current = null;
     }
   }, []);
 

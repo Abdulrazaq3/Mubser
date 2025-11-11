@@ -1,5 +1,6 @@
+
 import React from 'react';
-import FAQ from '../components/FAQ';
+import FAQ from '../FAQ';
 
 const FAQPage: React.FC = () => {
   return (
