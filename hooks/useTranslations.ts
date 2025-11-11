@@ -1,3 +1,4 @@
+
 import { useCallback } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -150,6 +151,11 @@ const arTranslations = {
     "followUsTitle": "تابعنا",
     "copyright": "مُبصِر. جميع الحقوق محفوظة."
   },
+  "signToTextPage": {
+    "title": "إشارة إلى نص",
+    "lettersTab": "ترجمة الحروف",
+    "wordsTab": "ترجمة الكلمات"
+  },
   "translator": {
     "status": {
       "idle": "جاهز",
@@ -159,8 +165,12 @@ const arTranslations = {
       "error": "خطأ"
     },
     "handInFrame": "ضع يدك داخل الإطار",
-    "prompt": "اضغط لتفعيل الكاميرا وبدء الترجمة",
+    "prompt": "اضغط لتفعيل الكاميرا أو ارفع صورة للترجمة",
     "startCamera": "تشغيل الكاميرا",
+    "uploadImage": "رفع صورة",
+    "analyzeImageButton": "تحليل الصورة",
+    "removeImageButton": "إزالة",
+    "imagePreviewAlt": "معاينة الصورة المحددة",
     "cameraError": "نحتاج إذن الكاميرا لبدء الترجمة. يرجى تفعيل الكاميرا في إعدادات المتصفح.",
     "apiError": "فشلت الترجمة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.",
     "retryButton": "إعادة المحاولة",
@@ -176,7 +186,8 @@ const arTranslations = {
     "speakButton": "نطق النص",
     "stopButton": "إيقاف",
     "copied": "تم النسخ!",
-    "privacyNote": "لا نُخزّن الفيديو. كل شيء يحدث على جهازك."
+    "privacyNote": "لا نُخزّن الفيديو. كل شيء يحدث على جهازك.",
+    "captureIntervalLabel": "التقاط كل: {seconds} ثانية"
   },
   "textToSign": {
     "title": "ترجمة النص إلى لغة الإشارة",
@@ -343,6 +354,11 @@ const enTranslations = {
     "followUsTitle": "Follow Us",
     "copyright": "Mubsir. All rights reserved."
   },
+   "signToTextPage": {
+    "title": "Sign to Text",
+    "lettersTab": "Translate Letters",
+    "wordsTab": "Translate Words"
+  },
   "translator": {
     "status": {
       "idle": "Ready",
@@ -352,8 +368,12 @@ const enTranslations = {
       "error": "Error"
     },
     "handInFrame": "Place your hand in the frame",
-    "prompt": "Click to activate the camera and start translation",
+    "prompt": "Click to start the camera or upload an image to translate",
     "startCamera": "Start Camera",
+    "uploadImage": "Upload Image",
+    "analyzeImageButton": "Analyze Image",
+    "removeImageButton": "Remove",
+    "imagePreviewAlt": "Selected image preview",
     "cameraError": "We need camera permission to start translation. Please enable the camera in your browser settings.",
     "apiError": "Translation failed. Please check your internet connection and try again.",
     "retryButton": "Retry",
@@ -369,7 +389,8 @@ const enTranslations = {
     "speakButton": "Speak Text",
     "stopButton": "Stop",
     "copied": "Copied!",
-    "privacyNote": "We do not store your video. Everything happens on your device."
+    "privacyNote": "We do not store your video. Everything happens on your device.",
+    "captureIntervalLabel": "Capture every: {seconds}s"
   },
   "textToSign": {
     "title": "Translate Text to Sign Language",

@@ -25,11 +25,6 @@ const App: React.FC = () => {
   }, [language, dir]);
 
   useEffect(() => {
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(prefersDark);
-  }, []);
-
-  useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {

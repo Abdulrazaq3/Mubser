@@ -12,13 +12,13 @@ const Hero: React.FC<HeroProps> = ({ onStartClick }) => {
   if (!isLoaded) return <section className="py-20 md:py-32 h-[500px]" />;
 
   return (
-    <section id="home" className="py-20 md:py-32 overflow-hidden animated-gradient dark:bg-dark-background">
+    <section id="home" className="py-20 md:py-32 overflow-hidden animated-gradient dark:bg-accent-light">
       <div className="container mx-auto px-4 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-4xl md:text-6xl font-bold text-primary-dark dark:text-white mb-4 leading-tight"
+          className="text-4xl md:text-6xl font-bold text-primary-dark dark:text-primary-dark mb-4 leading-tight"
         >
           {t('hero.title')}
         </motion.h1>
@@ -26,7 +26,7 @@ const Hero: React.FC<HeroProps> = ({ onStartClick }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="text-lg md:text-xl text-primary-light dark:text-accent/80 max-w-3xl mx-auto mb-8 leading-relaxed"
+          className="text-lg md:text-xl text-primary max-w-3xl mx-auto mb-8 leading-relaxed"
         >
           {t('hero.subtitle.line1')}
           <br />
