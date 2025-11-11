@@ -5,8 +5,6 @@ import { VolumeUpIcon, CopyIcon } from './icons';
 import { useTranslations } from '../hooks/useTranslations';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 const DEFAULT_INTERVAL_MS = 2000;
 
 enum Status {
@@ -90,6 +88,8 @@ const Translator: React.FC = () => {
     setStatus(Status.Translating);
 
     try {
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      
       const canvas = canvasRef.current ?? document.createElement('canvas');
       if (!canvasRef.current) canvasRef.current = canvas;
 
