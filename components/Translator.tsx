@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GoogleGenAI } from "@google/genai";
 import { VolumeUpIcon, CopyIcon } from './icons';
 import { useTranslations } from '../hooks/useTranslations';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -88,6 +87,7 @@ const Translator: React.FC = () => {
     setStatus(Status.Translating);
 
     try {
+      const { GoogleGenAI } = await import('@google/genai');
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
       const canvas = canvasRef.current ?? document.createElement('canvas');
