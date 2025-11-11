@@ -14,7 +14,7 @@ export const useTranslations = () => {
         return;
       }
       try {
-        const response = await fetch(`./locales/${language}.json`);
+        const response = await fetch(`./${language}.json`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
