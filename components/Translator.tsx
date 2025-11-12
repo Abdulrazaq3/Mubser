@@ -48,7 +48,8 @@ const Translator: React.FC<TranslatorProps> = ({ mode }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  // Fix: Changed NodeJS.Timeout to number for browser compatibility.
+  const intervalRef = useRef<number | null>(null);
   const inFlightRef = useRef<boolean>(false);
 
   const analyzeImageBlob = useCallback(async (imageBlob: Blob) => {
@@ -59,31 +60,13 @@ const Translator: React.FC<TranslatorProps> = ({ mode }) => {
     setDetectedText('');
     setConfidence(0);
 
-    if (mode === 'words') {
-        console.log('[DEBUG] Simulating analysis for "words" mode...');
-        setTimeout(() => {
-            const lang = document.documentElement.lang;
-            setDetectedText(lang === 'ar' ? 'مرحباً' : 'Hello');
-            setConfidence(0.92);
-            if (streamRef.current) {
-                setStatus(Status.Watching);
-            } else {
-                setStatus(Status.Idle);
-            }
-            inFlightRef.current = false;
-            console.log('[DEBUG] Words analysis simulation finished.');
-        }, 1200); // Simulate network delay
-        return;
-    }
-    
-    // Existing logic for 'letters' mode
-    console.log('[DEBUG] Starting analysis for "letters" mode...');
+    const backendUrl = mode === 'words'
+        ? 'https://pattae-melissa-nondoubtingly.ngrok-free.dev/analyze_word'
+        : 'https://pattae-melissa-nondoubtingly.ngrok-free.dev/analyze';
+
     try {
       const formData = new FormData();
       formData.append('image', imageBlob, 'capture.jpg');
-      
-      const backendUrl = 'https://pattae-melissa-nondoubtingly.ngrok-free.dev/analyze';
-      console.log(`[DEBUG] Attempting to POST to ${backendUrl}...`);
 
       const response = await fetch(backendUrl, {
         method: 'POST',
@@ -92,25 +75,26 @@ const Translator: React.FC<TranslatorProps> = ({ mode }) => {
         },
         body: formData,
       });
-      
-      console.log('[DEBUG] Received response from backend:', response);
 
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
       }
-      
+
       const result = await response.json();
-      console.log('[DEBUG] Parsed JSON result:', result);
 
       if (result && result.label) {
-        setDetectedText(result.label.substring(0, 1).toUpperCase());
+        if (mode === 'letters') {
+            setDetectedText(result.label.substring(0, 1).toUpperCase());
+        } else {
+            setDetectedText(result.label);
+        }
         setConfidence(result.confidence || 0);
       } else {
         setDetectedText('');
         setConfidence(0);
       }
-      
+
       if (streamRef.current) {
         setStatus(Status.Watching);
       } else {
@@ -119,15 +103,13 @@ const Translator: React.FC<TranslatorProps> = ({ mode }) => {
     } catch (e: any) {
       console.error('API Error:', e);
       if (e instanceof TypeError) {
-          console.error('This might be a CORS or network issue. Check the browser console and network tab for more details.');
-          setError(t('translator.apiError') + " (قد تكون مشكلة CORS)");
+          setError(t('translator.apiError') + " (CORS or network issue)");
       } else {
         setError(e?.message || t('translator.apiError'));
       }
       setStatus(Status.Error);
     } finally {
       inFlightRef.current = false;
-      console.log('[DEBUG] Letters analysis finished.');
     }
   }, [t, mode]);
 
