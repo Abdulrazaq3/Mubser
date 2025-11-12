@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations } from '../hooks/useTranslations';
@@ -9,10 +10,10 @@ interface CallToActionProps {
 const CallToAction: React.FC<CallToActionProps> = ({ onNavigate }) => {
   const { t, isLoaded } = useTranslations();
 
-  if (!isLoaded) return <section className="py-16 sm:py-24" />;
+  if (!isLoaded) return <section className="py-12 sm:py-20" />;
 
   return (
-    <section className="py-16 sm:py-24 bg-white dark:bg-dark-background">
+    <section className="py-12 sm:py-20 bg-white dark:bg-dark-background">
       <div className="container mx-auto px-4">
         <motion.div
             initial={{ opacity: 0, y: 50 }}

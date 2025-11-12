@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { TwitterIcon, LinkedInIcon } from './icons';
 import { useTranslations } from '../hooks/useTranslations';
@@ -6,8 +7,8 @@ const Footer: React.FC = () => {
   const { t, isLoaded } = useTranslations();
 
   const socialLinks = [
-    { name: 'Twitter', icon: <TwitterIcon />, href: '#' },
-    { name: 'LinkedIn', icon: <LinkedInIcon />, href: '#' },
+    { name: 'Twitter', icon: <TwitterIcon />, href: 'https://x.com/mubser0' },
+    { name: 'LinkedIn', icon: <LinkedInIcon />, href: 'https://www.linkedin.com/company/mubser-%D9%85%D9%8F%D8%A8%D8%B5%D8%B1/about/?viewAsMember=true' },
   ];
   
   const navLinks = [
@@ -26,7 +27,7 @@ const Footer: React.FC = () => {
           
           <div className="flex flex-col items-center lg:items-start">
             <a href="#home" className="mb-4">
-              <img src="https://i.postimg.cc/SsZ3p19W/logo-bsr.png" alt={t('header.logoAlt')} className="h-20 object-contain" />
+              <img src="https://i.postimg.cc/SsZ3p19W/logo-bsr.png" alt={t('header.logoAlt')} className="h-16 object-contain" />
             </a>
             <p className="max-w-xs text-accent/70 leading-relaxed">
               {t('footer.about')}

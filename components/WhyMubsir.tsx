@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { FastForwardIcon, TargetIcon, ShieldIcon, ArrowExchangeIcon } from './icons';
@@ -27,10 +28,10 @@ const WhyMubsir: React.FC = () => {
   const { t, T, isLoaded } = useTranslations();
   const features = T('whyMubsir.features');
   
-  if (!isLoaded) return <section className="py-16 sm:py-24" />;
+  if (!isLoaded) return <section className="py-12 sm:py-20" />;
 
   return (
-    <section id="about" className="py-16 sm:py-24 bg-accent dark:bg-dark-surface">
+    <section id="about" className="py-12 sm:py-20 bg-accent dark:bg-dark-surface">
       <div className="container mx-auto px-4">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
@@ -59,8 +60,8 @@ const WhyMubsir: React.FC = () => {
               <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-secondary/10 dark:bg-secondary/20">
                 {iconMap[feature.icon]}
               </div>
-              <h3 className="text-2xl font-bold text-primary-dark dark:text-white mb-2">{feature.title}</h3>
-              <p className="text-primary-light dark:text-accent/80 flex-grow">{feature.description}</p>
+              <h3 className="text-xl sm:text-2xl font-bold text-primary-dark dark:text-white mb-2">{feature.title}</h3>
+              <p className="text-primary-light dark:text-accent/80 flex-grow text-sm sm:text-base">{feature.description}</p>
             </motion.div>
           ))}
         </div>

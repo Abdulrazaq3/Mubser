@@ -42,11 +42,16 @@ const SignToTextPage: React.FC = () => {
 
   return (
     <div className="bg-white dark:bg-dark-background">
-      <div className="container mx-auto px-4 pt-12">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center text-primary-dark dark:text-white mb-2">
-          {t('signToTextPage.title')}
-        </h2>
-        <div role="tablist" aria-orientation="horizontal" className="max-w-md mx-auto flex border-b-2 border-primary/10 dark:border-white/10 mb-8">
+      <div className="container mx-auto px-4 py-12 sm:py-16">
+        <div className="text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold text-primary-dark dark:text-white mb-2">
+            {t('signToTextPage.title')}
+            </h2>
+            <p className="text-primary-light dark:text-accent/80 mb-8 max-w-2xl mx-auto">
+                {t('signToTextPage.subtitle')}
+            </p>
+        </div>
+        <div role="tablist" aria-orientation="horizontal" className="max-w-md mx-auto flex border-b-2 border-primary/10 dark:border-white/10">
             <TabButton currentMode={mode} targetMode="letters" onClick={() => setMode('letters')}>
                 {t('signToTextPage.lettersTab')}
             </TabButton>

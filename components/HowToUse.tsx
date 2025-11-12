@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { CameraIcon, HandIcon, ReadIcon } from './icons';
@@ -36,17 +37,17 @@ const HowToUse: React.FC = () => {
   const { t, T, isLoaded } = useTranslations();
   const steps = T('howToUse.steps');
 
-  if (!isLoaded) return <section className="py-16 sm:py-24" />;
+  if (!isLoaded) return <section className="py-12 sm:py-20" />;
 
   return (
-    <section className="py-16 sm:py-24 bg-white dark:bg-dark-background">
+    <section className="py-12 sm:py-20 bg-white dark:bg-dark-background">
       <div className="container mx-auto px-4">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl sm:text-4xl font-bold text-center text-primary-dark dark:text-white mb-16">
+          className="text-3xl sm:text-4xl font-bold text-center text-primary-dark dark:text-white mb-12 sm:mb-16">
             {t('howToUse.title')}
         </motion.h2>
         <div className="relative">

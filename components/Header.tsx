@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from './icons';
@@ -70,19 +71,19 @@ const Header: React.FC<HeaderProps> = ({
     );
   };
 
-  if (!isLoaded) return <header className="bg-primary h-24" />;
+  if (!isLoaded) return <header className="bg-primary h-20" />;
 
   return (
     <>
       <header className="bg-primary text-accent-light shadow-md sticky top-0 z-40">
-        <div className="container mx-auto flex justify-between items-center px-4 h-24">
+        <div className="container mx-auto flex justify-between items-center px-4 h-20">
           <a 
             href="#home" 
             onClick={(e) => { e.preventDefault(); handleLinkClick('home'); }} 
             className="flex items-center gap-3 transition-transform duration-200 hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary rounded-lg p-1 -m-1"
             aria-label={t('header.homeAria')}
           >
-            <img src="https://i.postimg.cc/SsZ3p19W/logo-bsr.png" alt={t('header.logoAlt')} className="h-20 object-contain" />
+            <img src="https://i.postimg.cc/SsZ3p19W/logo-bsr.png" alt={t('header.logoAlt')} className="h-16 md:h-20 object-contain" />
           </a>
           
           <nav className="hidden md:flex items-center gap-4">

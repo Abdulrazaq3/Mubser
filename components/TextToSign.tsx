@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HandIcon } from './icons';
@@ -19,10 +20,10 @@ const TextToSign: React.FC = () => {
     }, 1500);
   };
   
-  if (!isLoaded) return <section className="py-16 sm:py-24 min-h-[600px]" />;
+  if (!isLoaded) return <section className="py-12 sm:py-20 min-h-[600px]" />;
 
   return (
-    <section className="py-16 sm:py-24 bg-white dark:bg-dark-background">
+    <section className="py-12 sm:py-20 bg-white dark:bg-dark-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -47,7 +48,7 @@ const TextToSign: React.FC = () => {
                 </label>
                 <textarea
                   id="text-input"
-                  rows={6}
+                  rows={5}
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                   placeholder={t('textToSign.placeholder')}

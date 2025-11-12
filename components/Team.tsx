@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useTranslations } from '../hooks/useTranslations';
@@ -47,10 +48,10 @@ const Team: React.FC = () => {
       ));
   };
 
-  if (!isLoaded) return <section className="py-16 sm:py-24" />;
+  if (!isLoaded) return <section className="py-12 sm:py-20" />;
 
   return (
-    <section id="team" className="py-16 sm:py-24 bg-white dark:bg-dark-background">
+    <section id="team" className="py-12 sm:py-20 bg-white dark:bg-dark-background">
       <div className="container mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -131,8 +132,8 @@ const Team: React.FC = () => {
                 <p className="text-primary-light dark:text-accent/80 text-lg">{selectedMember.title}</p>
               </div>
 
-              <div className="p-8 overflow-y-auto flex-grow">
-                <div className="text-primary-light dark:text-accent/80 text-left leading-relaxed">
+              <div className="p-6 sm:p-8 overflow-y-auto flex-grow">
+                <div className="text-primary-light dark:text-accent/80 text-left leading-relaxed text-sm sm:text-base">
                    {formatBio(selectedMember.bio)}
                 </div>
               </div>

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { QuestionMarkIcon } from './icons';
@@ -68,10 +69,10 @@ const FAQ: React.FC = () => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
-    if (!isLoaded) return <section className="py-16 sm:py-24" />;
+    if (!isLoaded) return <section className="py-12 sm:py-20" />;
 
   return (
-    <section id="faq" className="py-16 sm:py-24 bg-accent dark:bg-dark-surface">
+    <section id="faq" className="py-12 sm:py-20 bg-accent dark:bg-dark-surface">
       <div className="container mx-auto px-4">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

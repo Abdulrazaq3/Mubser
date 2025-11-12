@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { StarIcon } from './icons';
@@ -29,33 +30,13 @@ const itemVariants: Variants = {
 
 
 const Testimonials: React.FC = () => {
-    const { t, isLoaded } = useTranslations();
-    // Testimonial data is kept as-is since it's sample content
-    const testimonials = [
-        {
-            quote: "أداة رائعة غيرت طريقة تواصلي مع أصدقائي. دقيقة وسهلة الاستخدام بشكل لا يصدق!",
-            name: "أحمد العلي",
-            title: "مستخدم",
-            avatar: "https://i.postimg.cc/vHm8vnY9/rjal.png"
-        },
-        {
-            quote: "كتطبيقي المفضل للتواصل اليومي. يجعل المحادثات أسرع وأكثر سلاسة. أوصي به بشدة!",
-            name: "فاطمة خالد",
-            title: "مستخدمة",
-            avatar: "https://i.postimg.cc/5ys4V4mK/swrt-bnt.jpg"
-        },
-        {
-            quote: "كم هو مدهش أن نرى التكنولوجيا تساعد في سد فجوات التواصل. مُبصِر يقوم بعمل رائع.",
-            name: "يوسف مراد",
-            title: "مستخدم",
-            avatar: "https://i.postimg.cc/gkMj9DSw/rjal2.png"
-        }
-    ];
+    const { t, T, isLoaded } = useTranslations();
+    const testimonials = T('testimonials.items');
 
-    if (!isLoaded) return <section className="py-16 sm:py-24" />;
+    if (!isLoaded) return <section className="py-12 sm:py-20" />;
 
     return (
-        <section className="py-16 sm:py-24 bg-accent dark:bg-dark-surface">
+        <section className="py-12 sm:py-20 bg-accent dark:bg-dark-surface">
             <div className="container mx-auto px-4">
                 <motion.h2 
                     initial={{ opacity: 0, y: 20 }}
@@ -74,7 +55,7 @@ const Testimonials: React.FC = () => {
                     viewport={{ once: true, amount: 0.2 }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
-                    {testimonials.map((testimonial, index) => (
+                    {testimonials.map((testimonial: any, index: number) => (
                         <motion.div 
                             key={index}
                             variants={itemVariants}
