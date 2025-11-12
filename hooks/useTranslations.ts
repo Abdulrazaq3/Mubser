@@ -92,12 +92,12 @@ const arTranslations = {
         "linkedin": "https://www.linkedin.com/in/aldajanii/"
       },
       {
-        "id": "abdulrazzaq",
+        "id": "abdulrazaq",
         "name": "عبدالرزاق الدوسري",
         "title": "مطور متكامل",
         "avatar": "https://i.postimg.cc/26szkNTt/self-Pecture.png",
         "bio": "طالب في السنة اﻷخيرة بقسم علوم الحاسب - مسار الذكاء اﻷصطناعي. مهتم بتطوير الويب والذكاء الاصطناعي، ولدي خبرة في بناء تطبيقات ويب متكاملة باستخدام تقنيات حديثة. شاركت في مشروع 'صلة' لترجمة لغة الإشارة وساهمت في تطوير الواجهات الخلفية. أسعى لتطبيق مهاراتي في حل مشكلات العالم الحقيقي.",
-        "linkedin": "https://www.linkedin.com/in/abdulrazzaq-aldosari/"
+        "linkedin": "https://www.linkedin.com/in/abdulrazaq-h-aldawsari-046511209/"
       },
       {
         "id": "sadeem",
@@ -293,12 +293,12 @@ const enTranslations = {
         "linkedin": "https://www.linkedin.com/in/aldajanii/"
       },
       {
-        "id": "abdulrazzaq",
-        "name": "Abdulrazzaq Aldosari",
+        "id": "abdulrazaq",
+        "name": "Abdulrazaq Aldosari",
         "title": "Full-Stack Developer",
         "avatar": "https://i.postimg.cc/26szkNTt/self-Pecture.png",
         "bio": "Final year Computer Science student - AI track. Interested in web development and AI, I have experience building full-stack web applications using modern technologies. I participated in the 'Silah' project for sign language translation and contributed to back-end development. I strive to apply my skills to solve real-world problems.",
-        "linkedin": "https://www.linkedin.com/in/abdulrazzaq-aldosari/"
+        "linkedin": "https://www.linkedin.com/in/abdulrazaq-h-aldawsari-046511209/"
       },
       {
         "id": "sadeem",
