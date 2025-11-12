@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { CameraIcon, HandIcon, ReadIcon } from './icons';
@@ -51,7 +50,7 @@ const HowToUse: React.FC = () => {
             {t('howToUse.title')}
         </motion.h2>
         <div className="relative">
-            <div className="absolute top-12 left-0 w-full h-0.5 bg-secondary/30 dark:bg-secondary/20 hidden md:block" aria-hidden="true"></div>
+            <div className="absolute top-16 left-0 w-full h-1 bg-secondary/30 dark:bg-secondary/20 hidden md:block" aria-hidden="true"></div>
             <motion.div 
               variants={containerVariants}
               initial="hidden"
@@ -61,11 +60,11 @@ const HowToUse: React.FC = () => {
             {steps.map((step: any, index: number) => (
                 <motion.div variants={itemVariants} key={index} className="flex flex-col items-center text-center">
                   <div className="relative mb-6">
-                    <div className="absolute -top-3 -right-3 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm z-20">
+                    <div className="absolute -top-3 -right-3 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm z-20 shadow-md">
                       {index + 1}
                     </div>
-                    <div className="bg-secondary/20 rounded-full p-4 z-10 border-4 border-white dark:border-dark-background">
-                        <div className="bg-secondary rounded-full p-4">
+                    <div className="bg-secondary/20 rounded-full p-5 z-10 border-4 border-white dark:border-dark-background shadow-inner">
+                        <div className="bg-secondary rounded-full p-5 shadow-lg">
                             {iconMap[step.icon]}
                         </div>
                     </div>

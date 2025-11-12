@@ -156,3 +156,9 @@ export const UploadIcon: React.FC<{ className?: string }> = ({ className = 'w-6 
       <line x1="12" y1="3" x2="12" y2="15"></line>
     </svg>
 );
+
+export const QuoteIcon: React.FC<{ className?: string }> = ({ className = 'w-12 h-12' }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+        <path d="M14.017 21v-7.391c0-2.908.942-5.065 2.825-6.424l-1.619-1.58c-1.499 1.3-2.45 3.14-2.825 5.519h-2.398v10h6.015v-2.124h-2.003zm-10 0v-7.391c0-2.908.942-5.065 2.825-6.424l-1.62-1.58c-1.499 1.3-2.449 3.14-2.824 5.519h-2.399v10h6.015v-2.124h-2.002z"/>
+    </svg>
+);

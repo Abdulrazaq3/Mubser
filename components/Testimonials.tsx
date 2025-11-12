@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { StarIcon } from './icons';
+import { StarIcon, QuoteIcon } from './icons';
 import { useTranslations } from '../hooks/useTranslations';
 
 const containerVariants: Variants = {
@@ -59,18 +58,21 @@ const Testimonials: React.FC = () => {
                         <motion.div 
                             key={index}
                             variants={itemVariants}
-                            className="bg-white dark:bg-dark-card p-8 rounded-2xl shadow-lg flex flex-col items-center text-center dark:border dark:border-white/10"
+                            className="bg-white dark:bg-dark-card p-8 rounded-2xl shadow-lg flex flex-col items-center text-center dark:border dark:border-white/10 relative overflow-hidden"
                         >
-                            <img src={testimonial.avatar} alt={testimonial.name} className="w-20 h-20 rounded-full mb-4 border-4 border-secondary/50" />
-                            <div className="flex gap-1 text-secondary mb-4">
-                                {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
-                            </div>
-                            <blockquote className="text-primary-light dark:text-accent/80 italic mb-6 flex-grow">
-                                "{testimonial.quote}"
-                            </blockquote>
-                            <div>
-                                <p className="font-bold text-primary-dark dark:text-white">{testimonial.name}</p>
-                                <p className="text-sm text-primary-light/70 dark:text-accent/70">{testimonial.title}</p>
+                            <QuoteIcon className="absolute top-4 left-4 w-20 h-20 text-primary/5 dark:text-white/5 transform -rotate-12" />
+                            <div className="relative z-10 flex flex-col items-center h-full">
+                                <img src={testimonial.avatar} alt={testimonial.name} className="w-20 h-20 rounded-full mb-4 border-4 border-secondary/50" />
+                                <div className="flex gap-1 text-secondary mb-4">
+                                    {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
+                                </div>
+                                <blockquote className="text-primary-light dark:text-accent/80 italic mb-6 flex-grow">
+                                    "{testimonial.quote}"
+                                </blockquote>
+                                <div className="mt-auto">
+                                    <p className="font-bold text-primary-dark dark:text-white">{testimonial.name}</p>
+                                    <p className="text-sm text-primary-light/70 dark:text-accent/70">{testimonial.title}</p>
+                                </div>
                             </div>
                         </motion.div>
                     ))}

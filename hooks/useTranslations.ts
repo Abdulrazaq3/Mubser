@@ -109,29 +109,6 @@ const arTranslations = {
       }
     ]
   },
-  "testimonials": {
-    "title": "ماذا يقول مستخدمونا",
-    "items": [
-      {
-        "quote": "أداة رائعة غيرت طريقة تواصلي مع أصدقائي. دقيقة وسهلة الاستخدام بشكل لا يصدق!",
-        "name": "أحمد العلي",
-        "title": "مستخدم",
-        "avatar": "https://i.postimg.cc/vHm8vnY9/rjal.png"
-      },
-      {
-        "quote": "كتطبيقي المفضل للتواصل اليومي. يجعل المحادثات أسرع وأكثر سلاسة. أوصي به بشدة!",
-        "name": "فاطمة خالد",
-        "title": "مستخدمة",
-        "avatar": "https://i.postimg.cc/5ys4V4mK/swrt-bnt.jpg"
-      },
-      {
-        "quote": "كم هو مدهش أن نرى التكنولوجيا تساعد في سد فجوات التواصل. مُبصِر يقوم بعمل رائع.",
-        "name": "يوسف مراد",
-        "title": "مستخدم",
-        "avatar": "https://i.postimg.cc/gkMj9DSw/rjal2.png"
-      }
-    ]
-  },
   "faq": {
     "title": "أسئلة شائعة",
     "questions": [
@@ -150,6 +127,14 @@ const arTranslations = {
       {
         "question": "هل يعمل التطبيق على جميع الأجهزة؟",
         "answer": "يعمل مُبصِر على معظم المتصفحات الحديثة على أجهزة الكمبيوتر المكتبية والأجهزة المحمولة. للحصول على أفضل أداء، نوصي باستخدام Google Chrome أو Safari."
+      },
+      {
+        "question": "هل يدعم التطبيق الترجمة الثنائية؟",
+        "answer": "نعم بالتأكيد. مُبصِر مصمم ليكون جسر تواصل متكامل، حيث يمكنك الترجمة من لغة الإشارة إلى نص مكتوب، والعكس من نص مكتوب إلى لغة إشارة مرئية."
+      },
+      {
+        "question": "من هم مبتكري مبصر ؟",
+        "answer": "تم إنشاء مُبصِر بواسطة فريق موهوب: أحمد الرشيد (مدير المشروع ومهندس الذكاء الاصطناعي)، الذي قاد الفريق برؤية ثاقبة وطوّر نماذج الذكاء الاصطناعي الأساسية؛ أميرة الدعجاني (مهندسة البيانات)، المسؤولة عن بناء وإدارة مجموعات البيانات الضخمة للتدريب؛ عبدالرزاق الدوسري (مطور متكامل)، الذي بنى تطبيق الويب بالكامل ليضمن تجربة سلسة؛ وسديم الرشيد (مصممة واجهة المستخدم ومولدة البيانات)، التي صممت الواجهة سهلة الاستخدام وساهمت في توليد بيانات التدريب."
       }
     ]
   },
@@ -325,29 +310,6 @@ const enTranslations = {
       }
     ]
   },
-  "testimonials": {
-    "title": "What Our Users Say",
-    "items": [
-      {
-        "quote": "An amazing tool that changed how I communicate with my friends. Incredibly accurate and easy to use!",
-        "name": "Ahmed Al-Ali",
-        "title": "User",
-        "avatar": "https://i.postimg.cc/vHm8vnY9/rjal.png"
-      },
-      {
-        "quote": "My go-to app for daily communication. It makes conversations faster and smoother. Highly recommended!",
-        "name": "Fatima Khalid",
-        "title": "User",
-        "avatar": "https://i.postimg.cc/5ys4V4mK/swrt-bnt.jpg"
-      },
-      {
-        "quote": "It's amazing to see technology helping to bridge communication gaps. Mubsir does a fantastic job.",
-        "name": "Yusuf Murad",
-        "title": "User",
-        "avatar": "https://i.postimg.cc/gkMj9DSw/rjal2.png"
-      }
-    ]
-  },
   "faq": {
     "title": "Frequently Asked Questions",
     "questions": [
@@ -366,6 +328,14 @@ const enTranslations = {
       {
         "question": "Does it work on all devices?",
         "answer": "Mubsir works on most modern browsers on desktop and mobile devices. For the best performance, we recommend using Google Chrome or Safari."
+      },
+      {
+        "question": "Does the application support two-way translation?",
+        "answer": "Yes, absolutely. Mubsir is designed to be an integrated communication bridge, where you can translate from sign language to written text, and vice versa from written text to visible sign language."
+      },
+      {
+        "question": "Who are the creators of Mubsir?",
+        "answer": "Mubsir was created by a talented team: Ahmed Alrasheed (Project Manager & AI Engineer), who led the team with insightful vision and developed the core AI models; Amirah Aldajani (Data Engineer), responsible for building and managing the large datasets for training; Abdulrazzaq Aldosari (Full-Stack Developer), who built the entire web application to ensure a seamless experience; and Sadeem Alrasheed (UI Designer & Data Generator), who designed the user-friendly interface and contributed to generating training data."
       }
     ]
   },

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useTranslations } from '../hooks/useTranslations';
@@ -78,18 +77,31 @@ const Team: React.FC = () => {
               }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               onClick={() => setSelectedMember(member)}
-              className="bg-accent/50 dark:bg-dark-card p-6 rounded-3xl shadow-lg text-center dark:border dark:border-white/10 flex flex-col items-center cursor-pointer"
+              className="bg-accent/50 dark:bg-dark-card p-6 rounded-3xl shadow-lg text-center dark:border dark:border-white/10 flex flex-col items-center cursor-pointer group"
             >
-              <div className="w-28 h-28 rounded-full mb-4 bg-secondary/20 dark:bg-secondary/30 flex items-center justify-center border-4 border-white dark:border-dark-background overflow-hidden">
-                {member.avatar ? (
-                  <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
-                ) : (
-                  <span className="text-3xl font-bold text-primary-dark dark:text-white">{getInitials(member.name)}</span>
-                )}
+              <div className="relative w-28 h-28 mb-4">
+                <div className="w-full h-full rounded-full bg-secondary/20 dark:bg-secondary/30 flex items-center justify-center border-4 border-white dark:border-dark-background overflow-hidden">
+                    {member.avatar ? (
+                    <img src={member.avatar} alt={member.name} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+                    ) : (
+                    <span className="text-3xl font-bold text-primary-dark dark:text-white">{getInitials(member.name)}</span>
+                    )}
+                </div>
+                <a 
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label={`${member.name}'s LinkedIn Profile`}
+                    className="absolute inset-0 bg-primary-dark/70 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                    <LinkedInIcon className="w-8 h-8 text-white" />
+                </a>
               </div>
+
               <h3 className="text-xl font-bold text-primary-dark dark:text-white">{member.name}</h3>
               <p className="text-primary-light dark:text-accent/80 mb-4">{member.title}</p>
-              <span className="mt-auto text-sm font-semibold text-secondary dark:text-secondary-light">{t('team.viewDetails')}</span>
+              <span className="mt-auto text-sm font-semibold text-secondary dark:text-secondary-light opacity-70 group-hover:opacity-100 transition-opacity">{t('team.viewDetails')}</span>
             </motion.div>
           ))}
         </div>
